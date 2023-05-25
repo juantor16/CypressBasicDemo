@@ -1,16 +1,11 @@
-const { defineConfig } = require("cypress");
+const path = require('path');
 
-module.exports = defineConfig({
+module.exports = {
+  projectId: "1g3ppk",
   e2e: {
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      // implement e2e node event listeners here
     },
   },
-  reporter: "mochawesome",
-  reporterOptions: {
-    reportDir: "cypress/reports/mocha",
-    overwrite: false,
-    html: false,
-    json: true,
-  },
-});
+};
+
