@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-05-25T15:38:15.441Z",
+    "end": "2023-05-25T15:38:20.532Z",
+    "duration": 5091,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "84c8f0b7-5d80-470f-9f30-fee9d9f40bfb",
+      "title": "",
+      "fullFile": "cypress/e2e/front_end.cy.js",
+      "file": "cypress/e2e/front_end.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "11c1e4f0-7d6a-49fc-ab6a-338bd26cc49d",
+          "title": "Sauce Demo Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verifies items sorting",
+              "fullTitle": "Sauce Demo Test Verifies items sorting",
+              "timedOut": null,
+              "duration": 3437,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Visit the Saucedemo website\ncy.visit(\"https://www.saucedemo.com/\");\n// Type username and password, then click login button\ncy.get('[data-test=\"username\"]').type(\"standard_user\");\ncy.get('[data-test=\"password\"]').type(\"secret_sauce\");\ncy.get('[data-test=\"login-button\"]').click();\n// Change the sorting to \"Name (A to Z)\"\ncy.get(\".product_sort_container\").select(\"az\");\n// Grab all the product names and verify that they are sorted in ascending order\ncy.get(\".inventory_item_name\").then($items => {\n  // First, get a plain array from the jQuery array-like object ($items.get()).\n  // Then, sort that array in ascending order by the text content of each element.\n  // This sorted array is stored in the 'sorted' variable.\n  let sorted = $items.get().sort((a, b) => Cypress.$(a).text() > Cypress.$(b).text() ? 1 : -1);\n  $items.each((index, element) =>\n  // For each item, check whether the text of the item is equal to the text of the corresponding item in the sorted array\n  expect(element).to.have.text(sorted[index].textContent));\n});\n// Change the sorting to \"Name (Z to A)\"\ncy.get(\".product_sort_container\").select(\"za\");\n// Grab all the product names and verify that they are sorted in descending order\ncy.get(\".inventory_item_name\").then($items => {\n  // Similar to before, but this time the array is sorted in descending order\n  let sorted = $items.get().sort((a, b) => Cypress.$(a).text() < Cypress.$(b).text() ? 1 : -1);\n  $items.each((index, element) =>\n  // For each item, check whether the text of the item is equal to the text of the corresponding item in the sorted array\n  expect(element).to.have.text(sorted[index].textContent));\n});",
+              "err": {},
+              "uuid": "8a7727e5-9cb6-4f7a-9388-ed956a2ccad1",
+              "parentUUID": "11c1e4f0-7d6a-49fc-ab6a-338bd26cc49d",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "8a7727e5-9cb6-4f7a-9388-ed956a2ccad1"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3437,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mocha",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
